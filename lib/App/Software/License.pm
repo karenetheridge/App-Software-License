@@ -5,7 +5,7 @@ use Moose;
 use MooseX::Types::Moose qw/Str Num Maybe/;
 use File::HomeDir;
 use File::Spec::Functions qw/catfile/;
-use Module::Runtime ();
+use Module::Runtime qw/use_module/;
 
 use namespace::clean -except => 'meta';
 
@@ -120,8 +120,7 @@ has _software_license => (
 sub _build__software_license {
     my ($self) = @_;
     my $class = "Software::License::${\$self->license}";
-    Module::Runtime::require_module($class);
-    return $class->new({
+    return use_module($class)->new({
         holder => $self->holder,
         year   => $self->year,
     });

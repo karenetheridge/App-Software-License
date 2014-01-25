@@ -6,6 +6,7 @@ use MooseX::Types::Moose qw/Str Num Maybe/;
 use File::HomeDir;
 use File::Spec::Functions qw/catfile/;
 use Module::Runtime qw/use_module/;
+use Software::License;
 
 use namespace::autoclean;
 
@@ -93,6 +94,8 @@ B<* meta_yml_name>
 
 This method returns the string that should be used for this license in the CPAN
 META.yml file, or nothing if there is no known string to use.
+
+=for Pod::Coverage run
 
 =cut
 

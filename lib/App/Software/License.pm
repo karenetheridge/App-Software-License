@@ -1,5 +1,5 @@
 package App::Software::License;
-# ABSTRACT: commandline interface to Software::License
+# ABSTRACT: command-line interface to Software::License
 
 use Moose;
 use MooseX::Types::Moose qw/Str Num Maybe/;
@@ -17,10 +17,12 @@ with qw/MooseX::Getopt MooseX::SimpleConfig/;
 
 =head1 DESCRIPTION
 
-This module provides a commandline interface to Software::License. It can be
+=for stopwords fulltext versioned
+
+This module provides a command-line interface to Software::License. It can be
 used to easily produce license notices to be included in other documents.
 
-All the attributes documented below are available as commandline options
+All the attributes documented below are available as command-line options
 through L<MooseX::Getopt> and can also be configured in
 L<$HOME/.software_license.conf> though L<MooseX::SimpleConfig>.
 

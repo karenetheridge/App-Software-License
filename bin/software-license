@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 # PODNAME: software-license
-# ABSTRACT: commandline interface to Software::License
+# ABSTRACT: command-line interface to Software::License
 
 use strict;
 use warnings;

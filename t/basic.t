@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 1;
+use Test::More;
 
 use App::Software::License;
 
@@ -17,3 +17,5 @@ my $app = App::Software::License->new_with_options;
 
 like $app->notice, qr/^\QThis software is Copyright (c)\E/i,
   'Copyright notice generated';
+
+done_testing;

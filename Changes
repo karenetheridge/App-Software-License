@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+          - removed use of deprecated Class::MOP::load_class (RT#92459,
+            rwstauner)
 
 0.01      2009-02-07 02:27:15Z
           - Initial release.

@@ -7,7 +7,7 @@ use File::HomeDir;
 use File::Spec::Functions qw/catfile/;
 use Module::Runtime qw/use_module/;
 
-use namespace::clean -except => 'meta';
+use namespace::autoclean;
 
 with qw/MooseX::Getopt MooseX::SimpleConfig/;
 

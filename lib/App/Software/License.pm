@@ -18,8 +18,6 @@ with qw/MooseX::Getopt MooseX::SimpleConfig/;
 
 =head1 DESCRIPTION
 
-=for stopwords fulltext versioned
-
 This module provides a command-line interface to Software::License. It can be
 used to easily produce license notices to be included in other documents.
 
@@ -80,12 +78,16 @@ B<* license>
 
 This method returns the full text of the license.
 
+=for :stopwords fulltext
+
 B<* fulltext>
 
 This method returns the complete text of the license, preceded by the copyright
 notice.
 
 B<* version>
+
+=for :stopwords versioned
 
 This method returns the version of the license.  If the license is not
 versioned, this returns nothing.

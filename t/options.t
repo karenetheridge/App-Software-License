@@ -2,6 +2,7 @@ use strict;
 use warnings;
 use Test::More 0.88;
 use File::Spec::Functions qw( catfile ); # core
+use Test::Warnings ':all';
 
 use App::Software::License;
 
@@ -18,6 +19,10 @@ sub test_opts {
         $desc,
     );
 }
+
+my @warnings =
+grep { !/Specified configfile '.*' does not exist, is empty, or is not readable/s }
+warnings {
 
 test_opts(
     [qw( --holder=A.Holder --license=BSD )],
@@ -36,5 +41,9 @@ test_opts(
     qr/^\QThis software is Copyright (c) 2000 by $holder.\E/,
     'specify year',
 );
+
+};
+
+warn @warnings if @warnings;
 
 done_testing;

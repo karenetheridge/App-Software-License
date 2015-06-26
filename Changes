@@ -1,6 +1,6 @@
 Revision history for App-Software-License
 
-{{$NEXT}}
+0.03      2015-06-26 02:50:24Z
           - fix handling of --year option (RT#82924)
           - no longer warns when .software_license.conf doesn't exist
 

@@ -4,7 +4,7 @@ package App::Software::License;
 our $VERSION = '0.03';
 
 use Moose;
-use MooseX::Types::Moose qw/Str Num Maybe/;
+use MooseX::Types::Moose qw/Str Num/;
 use File::HomeDir;
 use File::Spec::Functions qw/catfile/;
 use Module::Runtime qw/use_module/;
@@ -49,8 +49,7 @@ Year to be used in the copyright notice.
 
 has year => (
     is       => 'ro',
-    isa      => Maybe[Num],
-    default  => undef,
+    isa      => Num,
 );
 
 =attr license

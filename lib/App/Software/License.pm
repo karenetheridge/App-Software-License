@@ -1,5 +1,5 @@
 package App::Software::License;
-# ABSTRACT: command-line interface to Software::License
+# ABSTRACT: Command-line interface to Software::License
 
 use Moose;
 use MooseX::Types::Moose qw/Str Num Maybe/;

@@ -6,4 +6,7 @@ use strict;
 use warnings;
 use App::Software::License;
 
+local $SIG{__WARN__} = sub {
+    warn @_ unless $_[0] =~ /Specified configfile '.*' does not exist, is empty, or is not readable/s;
+};
 App::Software::License->new_with_options->run;

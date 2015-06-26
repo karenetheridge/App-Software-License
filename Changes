@@ -2,6 +2,7 @@ Revision history for App-Software-License
 
 {{$NEXT}}
           - fix handling of --year option (RT#82924)
+          - no longer warns when .software_license.conf doesn't exist
 
 0.02      2014-01-25 18:17:18Z
           - removed use of deprecated Class::MOP::load_class (RT#92459,

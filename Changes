@@ -1,6 +1,7 @@
 Revision history for App-Software-License
 
 {{$NEXT}}
+          - remove dependency on MooseX::Types
 
 0.03      2015-06-26 02:50:24Z
           - fix handling of --year option (RT#82924)

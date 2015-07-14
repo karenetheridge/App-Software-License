@@ -4,7 +4,6 @@ package App::Software::License;
 our $VERSION = '0.04';
 
 use Moose;
-use MooseX::Types::Moose qw/Str Num/;
 use File::HomeDir;
 use File::Spec::Functions qw/catfile/;
 use Module::Runtime qw/use_module/;
@@ -37,7 +36,7 @@ Name of the license holder.
 
 has holder => (
     is       => 'ro',
-    isa      => Str,
+    isa      => 'Str',
     required => 1,
 );
 
@@ -49,7 +48,7 @@ Year to be used in the copyright notice.
 
 has year => (
     is       => 'ro',
-    isa      => Num,
+    isa      => 'Num',
 );
 
 =attr license
@@ -61,7 +60,7 @@ Software::License:: namespace. Defaults to Perl_5.
 
 has license => (
     is      => 'ro',
-    isa     => Str,
+    isa     => 'Str',
     default => 'Perl_5',
 );
 
@@ -104,7 +103,7 @@ META.yml file, or nothing if there is no known string to use.
 
 has type => (
     is      => 'ro',
-    isa     => Str,
+    isa     => 'Str',
     default => 'notice',
 );
 

@@ -1,6 +1,6 @@
 Revision history for App-Software-License
 
-{{$NEXT}}
+0.04      2015-07-15 00:49:53Z
           - remove dependency on MooseX::Types
 
 0.03      2015-06-26 02:50:24Z

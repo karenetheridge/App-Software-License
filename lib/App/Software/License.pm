@@ -24,7 +24,7 @@ used to easily produce license notices to be included in other documents.
 
 All the attributes documented below are available as command-line options
 through L<MooseX::Getopt> and can also be configured in
-L<$HOME/.software_license.conf> though L<MooseX::SimpleConfig>.
+F<$HOME/.software_license.conf> though L<MooseX::SimpleConfig>.
 
 =cut
 

@@ -133,8 +133,10 @@ sub _build__software_license {
     });
 }
 
-override BUILDARGS => sub {
-    my $args = super;
+around BUILDARGS => sub {
+    my $orig = shift;
+    my $self = shift;
+    my $args = $self->$orig(@_);
     $args->{license} = $args->{extra_argv}->[0]
         if @{ $args->{extra_argv} };
     return $args;

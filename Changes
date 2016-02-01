@@ -1,6 +1,7 @@
 Revision history for App-Software-License
 
 {{$NEXT}}
+          - Converted to Moo (RT#108006)
 
 0.04      2015-07-15 00:49:53Z
           - remove dependency on MooseX::Types

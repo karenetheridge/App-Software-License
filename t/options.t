@@ -25,21 +25,34 @@ grep { !/Specified configfile '.*' does not exist, is empty, or is not readable/
 warnings {
 
 test_opts(
-    [qw( --holder=A.Holder --license=BSD )],
-    qr/^\QThis software is Copyright (c) $year by $holder.\E/,
+    [qw( --holder A.Holder --license=BSD )],
+    qr/^\QThis software is Copyright (c) $year by $holder.\E.*BSD/ms,
     'basic args',
 );
-
 test_opts(
     [qw( --holder=A.Holder BSD )],
-    qr/^\QThis software is Copyright (c) $year by $holder.\E/,
+    qr/^\QThis software is Copyright (c) $year by $holder.\E.*BSD/ms,
     'license as last (non-option) argument',
 );
-
+test_opts(
+    [qw( --holder A.Holder BSD )],
+    qr/^\QThis software is Copyright (c) $year by $holder.\E.*BSD/ms,
+    'license as last (non-option) argument II',
+);
 test_opts(
     [qw( --year=2000 --holder=A.Holder BSD )],
-    qr/^\QThis software is Copyright (c) 2000 by $holder.\E/,
+    qr/^\QThis software is Copyright (c) 2000 by $holder.\E.*BSD/ms,
     'specify year',
+);
+test_opts(
+    [qw( --configfile t/etc/software_license.conf )],
+    qr/^\QThis software is copyright (c) $year by $holder.\E.*Perl/ms,
+    'config file but using default license',
+);
+test_opts(
+    [qw( --configfile t/etc/software_license.conf BSD )],
+    qr/^\QThis software is Copyright (c) $year by $holder.\E.*BSD/ms,
+    'config file with license as last (non-option) argument',
 );
 
 };

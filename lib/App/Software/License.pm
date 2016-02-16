@@ -4,15 +4,15 @@ package App::Software::License;
 
 our $VERSION = '0.05';
 
-use Moose;
+use Moo;
+use MooX::Options;
 use File::HomeDir;
 use File::Spec::Functions qw/catfile/;
 use Module::Runtime qw/use_module/;
 use Software::License;
+use Config::Any;
 
-use namespace::autoclean;
-
-with qw/MooseX::Getopt MooseX::SimpleConfig/;
+use namespace::autoclean 0.16 -except => [qw/_options_data _options_config/];
 
 =head1 SYNOPSIS
 
@@ -24,8 +24,8 @@ This module provides a command-line interface to Software::License. It can be
 used to easily produce license notices to be included in other documents.
 
 All the attributes documented below are available as command-line options
-through L<MooseX::Getopt> and can also be configured in
-F<$HOME/.software_license.conf> though L<MooseX::SimpleConfig>.
+through L<MooX::Options> and can also be configured in
+F<$HOME/.software_license.conf> through L<Config::Any>.
 
 =cut
 
@@ -35,10 +35,11 @@ Name of the license holder.
 
 =cut
 
-has holder => (
+option holder => (
     is       => 'ro',
-    isa      => 'Str',
     required => 1,
+    format   => 's',
+    doc => '',
 );
 
 =attr year
@@ -47,9 +48,10 @@ Year to be used in the copyright notice.
 
 =cut
 
-has year => (
-    is       => 'ro',
-    isa      => 'Num',
+option year => (
+    is     => 'ro',
+    format => 'i',
+    doc => '',
 );
 
 =attr license
@@ -59,10 +61,11 @@ Software::License:: namespace. Defaults to Perl_5.
 
 =cut
 
-has license => (
+option license => (
     is      => 'ro',
-    isa     => 'Str',
     default => 'Perl_5',
+    format  => 's',
+    doc => '',
 );
 
 =attr type
@@ -100,21 +103,34 @@ META.yml file, or nothing if there is no known string to use.
 
 =for Pod::Coverage run
 
+=for Pod::Coverage BUILDARGS
+
 =cut
 
-has type => (
+option type => (
     is      => 'ro',
-    isa     => 'Str',
     default => 'notice',
+    format => 's',
+    doc => '',
 );
 
-has '+configfile' => (
+=attr configfile
+
+Path to the optional configuration file. Defaults to C<$HOME/.software_license.conf>.
+
+=cut
+
+option configfile => (
+    is => 'ro',
     default => catfile(File::HomeDir->my_home, '.software_license.conf'),
+    format => 's',
+    doc => '',
+    order => 100,
 );
 
 has _software_license => (
     is      => 'ro',
-    isa     => 'Software::License',
+    isa     => sub { die "Not a Software::License" if !$_[0]->isa('Software::License') },
     lazy    => 1,
     builder => '_build__software_license',
     handles => {
@@ -128,34 +144,35 @@ has _software_license => (
 sub _build__software_license {
     my ($self) = @_;
     my $class = "Software::License::${\$self->license}";
+
     return use_module($class)->new({
         holder => $self->holder,
         year   => $self->year,
     });
 }
 
-around BUILDARGS => sub {
-    my $orig = shift;
-    my $self = shift;
-    my $args = $self->$orig(@_);
-    $args->{license} = $args->{extra_argv}->[0]
-        if @{ $args->{extra_argv} };
-    return $args;
-};
+sub BUILDARGS {
+    my $class = shift;
 
-around get_config_from_file => sub {
-    my $orig = shift;
-    my $ret;
-    eval { $ret = $orig->(@_); };
-    return $ret;
-};
+    my $args = { @_ };
+    my $configfile = $args->{'configfile'} || catfile(File::HomeDir->my_home, '.software_license.conf');
+
+    # Handling license as a trailing non-option argument
+    if(!exists $args->{'license'} && scalar @ARGV && $ARGV[-1] !~ m{^--.+=.+} && (!scalar (@_) || $ARGV[-1] ne $_[-1])) {
+        $args->{'license'} = $ARGV[-1];
+    }
+
+    if(-e $configfile) {
+        my $conf = Config::Any->load_files({ files => [$configfile], use_ext => 0, flatten_to_hash => 1 })->{ $configfile };
+        $args = { %$conf, %$args };
+    }
+    return $args;
+}
 
 sub run {
     my ($self) = @_;
     my $meth = $self->type;
     print $self->_software_license->$meth;
 }
-
-__PACKAGE__->meta->make_immutable;
 
 1;

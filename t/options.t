@@ -23,7 +23,6 @@ if (-e $configfile) {
 sub test_opts {
     my ($argv, $re, $desc) = @_;
     local @ARGV = @$argv;
-    my $holder = 'A.Holder';
     like(
         App::Software::License->new_with_options->_software_license->notice,
         $re,

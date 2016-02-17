@@ -9,6 +9,15 @@ use App::Software::License;
 my $holder = 'A.Holder';
 my $year = (localtime)[5] + 1900;
 
+my $configfile = catfile(File::HomeDir->my_home, '.software_license.conf');
+if (-e $configfile) {
+    diag 'found a config file: ', $configfile, ':';
+    local $/;
+    open my $fh, '<', $configfile or die "cannot open $configfile: $!";
+    diag <$fh>;
+}
+
+
 sub test_opts {
     my ($argv, $re, $desc) = @_;
     local @ARGV = @$argv;

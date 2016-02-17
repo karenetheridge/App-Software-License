@@ -6,6 +6,8 @@ use Test::Warnings ':all';
 
 use App::Software::License;
 
+use Devel::Confess; # XXX do not leave in for stable release
+
 my $holder = 'A.Holder';
 my $year = (localtime)[5] + 1900;
 

@@ -1,6 +1,6 @@
 Revision history for App-Software-License
 
-{{$NEXT}}
+0.06      2016-02-17 03:04:25Z (TRIAL RELEASE)
           - attempt to cope with some Config modules that return undef values
           - add some debugging info to track down some test failures
 

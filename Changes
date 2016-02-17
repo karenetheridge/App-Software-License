@@ -1,6 +1,7 @@
 Revision history for App-Software-License
 
 {{$NEXT}}
+          - attempt to cope with some Config modules that return undef values
 
 0.05      2016-02-16 03:42:44Z
           - Converted to Moo (RT#108006)

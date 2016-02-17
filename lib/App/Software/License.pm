@@ -167,7 +167,7 @@ sub BUILDARGS {
 
     if (-e $configfile) {
         my $conf = Config::Any->load_files({ files => [$configfile], use_ext => 0, flatten_to_hash => 1 })->{ $configfile };
-        $args = { %$conf, %$args };
+        $args = { %{ $conf || {} }, %$args };
     }
     return $args;
 }

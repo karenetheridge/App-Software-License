@@ -155,14 +155,17 @@ sub BUILDARGS {
     my $class = shift;
 
     my $args = { @_ };
-    my $configfile = $args->{'configfile'} || catfile(File::HomeDir->my_home, '.software_license.conf');
+    my $configfile = $args->{configfile} || catfile(File::HomeDir->my_home, '.software_license.conf');
 
     # Handling license as a trailing non-option argument
-    if(!exists $args->{'license'} && scalar @ARGV && $ARGV[-1] !~ m{^--.+=.+} && (!scalar (@_) || $ARGV[-1] ne $_[-1])) {
-        $args->{'license'} = $ARGV[-1];
+    if (!exists $args->{license}
+            && scalar @ARGV && $ARGV[-1] !~ m{^--.+=.+}
+            && (!scalar (@_) || $ARGV[-1] ne $_[-1])
+    ) {
+        $args->{license} = $ARGV[-1];
     }
 
-    if(-e $configfile) {
+    if (-e $configfile) {
         my $conf = Config::Any->load_files({ files => [$configfile], use_ext => 0, flatten_to_hash => 1 })->{ $configfile };
         $args = { %$conf, %$args };
     }

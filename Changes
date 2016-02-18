@@ -1,6 +1,7 @@
 Revision history for App-Software-License
 
 {{$NEXT}}
+          - add prereq on Config::General, needed for Config::Any to parse .conf files
 
 0.06      2016-02-17 03:04:25Z (TRIAL RELEASE)
           - attempt to cope with some Config modules that return undef values

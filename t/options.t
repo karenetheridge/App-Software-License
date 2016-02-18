@@ -4,9 +4,9 @@ use Test::More 0.88;
 use File::Spec::Functions qw( catfile ); # core
 use Test::Warnings ':all';
 
-use App::Software::License;
-
 use Devel::Confess; # XXX do not leave in for stable release
+
+use App::Software::License;
 
 my $holder = 'A.Holder';
 my $year = (localtime)[5] + 1900;

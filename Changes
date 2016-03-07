@@ -1,6 +1,6 @@
 Revision history for App-Software-License
 
-{{$NEXT}}
+0.08      2016-03-07 02:02:07Z (TRIAL RELEASE)
           - use the configfile extension as a hint for the format to use
           - fix tests to depend on a format extractor that requires fewer
             dependencies

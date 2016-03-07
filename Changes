@@ -2,6 +2,8 @@ Revision history for App-Software-License
 
 {{$NEXT}}
           - use the configfile extension as a hint for the format to use
+          - fix tests to depend on a format extractor that requires fewer
+            dependencies
 
 0.07      2016-02-18 19:02:56Z (TRIAL RELEASE)
           - add prereq on Config::General, needed for Config::Any to parse .conf files

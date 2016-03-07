@@ -55,12 +55,12 @@ test_opts(
     'specify year',
 );
 test_opts(
-    [qw( --configfile t/etc/software_license.conf )],
+    [qw( --configfile t/etc/software_license.json )],
     qr/^\QThis software is copyright (c) $year by $holder.\E.*Perl/ms,
     'config file but using default license',
 );
 test_opts(
-    [qw( --configfile t/etc/software_license.conf BSD )],
+    [qw( --configfile t/etc/software_license.json BSD )],
     qr/^\QThis software is Copyright (c) $year by $holder.\E.*BSD/ms,
     'config file with license as last (non-option) argument',
 );

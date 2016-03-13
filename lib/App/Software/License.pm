@@ -4,7 +4,7 @@ package App::Software::License;
 
 our $VERSION = '0.09';
 
-use Moo;
+use Moo 1.001000;
 use MooX::Options;
 use File::HomeDir;
 use File::Spec::Functions qw/catfile/;

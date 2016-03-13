@@ -1,6 +1,7 @@
 Revision history for App-Software-License
 
 {{$NEXT}}
+          - bump Moo prereq for allowing of non-ref default values
 
 0.08      2016-03-07 02:02:07Z (TRIAL RELEASE)
           - use the configfile extension as a hint for the format to use

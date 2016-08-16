@@ -2,7 +2,7 @@ package App::Software::License;
 # ABSTRACT: Command-line interface to Software::License
 # KEYWORDS: license licence LICENSE generate distribution build tool
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 use Moo 1.001000;
 use MooX::Options;

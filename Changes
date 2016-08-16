@@ -1,6 +1,7 @@
 Revision history for App-Software-License
 
 {{$NEXT}}
+          - no changes since 0.09
 
 0.09      2016-03-13 03:09:20Z (TRIAL RELEASE)
           - bump Moo prereq for allowing of non-ref default values

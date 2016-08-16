@@ -4,8 +4,6 @@ use Test::More 0.88;
 use File::Spec::Functions qw( catfile ); # core
 use Test::Warnings ':all';
 
-use Devel::Confess; # XXX do not leave in for stable release
-
 use App::Software::License;
 
 my $holder = 'A.Holder';

@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More 0.88;
 use File::Spec::Functions qw( catfile ); # core
-use Test::Warnings ':all';
+use Test::Warnings ':all', ':no_end_test';
 
 use App::Software::License;
 
@@ -67,4 +67,5 @@ test_opts(
 
 warn @warnings if @warnings;
 
+had_no_warnings if $ENV{AUTHOR_TESTING};
 done_testing;

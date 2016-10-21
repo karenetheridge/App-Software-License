@@ -1,6 +1,6 @@
 Revision history for App-Software-License
 
-{{$NEXT}}
+0.11      2016-10-21 06:17:43Z
           - warnings are only checked for in tests under AUTHOR_TESTING, so as
             to not prevent installation when warnings occur in prerequisites.
 
